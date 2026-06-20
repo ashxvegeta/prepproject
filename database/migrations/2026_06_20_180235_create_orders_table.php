@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->decimal('total', 10, 2);
-            $table->string('status')->default('pending');
+            $table->enum('status', ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled', 'refunded'])
+              ->default('pending');
             $table->text('shipping_address');
             $table->timestamps();
         });
